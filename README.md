@@ -2,7 +2,7 @@
 
 # **SVBench: A Benchmark with Temporal Multi-Turn Dialogues for Streaming Video Understanding**
 
-[\[🚀 Project Homepage\]](https://yzy-bupt.github.io/SVBench/) [\[📖 Paper\]](https://arxiv.org/abs/2502.10810)  [\[🤗 HF Dataset\]](https://huggingface.co/datasets/yzy666/SVBench) [\[🤖 HF Model\]](https://huggingface.co/yzy666/StreamingChat_8B) [\[🏆 Leaderboard\]](https://huggingface.co/spaces/yzy666/SVBench) [\[🥇 Leaderboard Submission\]](https://forms.gle/tmY8PmM5KWSvTGcn7) [\[📚 中文解读\]](https://mp.weixin.qq.com/s/zFj6Wpy8ePR-2r0iWBghqA) 
+[\[🚀 Project Homepage\]](https://sotayang.github.io/SVBench/) [\[📖 Paper\]](https://arxiv.org/abs/2502.10810)  [\[🤗 HF Dataset\]](https://huggingface.co/datasets/yzy666/SVBench) [\[🤖 HF Model\]](https://huggingface.co/yzy666/StreamingChat_8B) [\[🏆 Leaderboard\]](https://huggingface.co/spaces/yzy666/SVBench) [\[🥇 Leaderboard Submission\]](https://forms.gle/tmY8PmM5KWSvTGcn7) [\[📚 中文解读\]](https://mp.weixin.qq.com/s/zFj6Wpy8ePR-2r0iWBghqA) 
 
 </div>
 
