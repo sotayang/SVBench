@@ -80,9 +80,6 @@ def create_evaluation_prompt(video_id, scene_id, questions, ground_truth, model_
     Model Responses:
     {model_responses}
 
-    Relationships:
-    {relationships}
-
     Please provide your evaluation scores and detailed comments for each criterion below:
 
     1. Semantic Accuracy:

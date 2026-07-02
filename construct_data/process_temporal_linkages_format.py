@@ -12,7 +12,7 @@ parser.add_argument('--output_folder', type=str, required=True, help='the path o
 
 args = parser.parse_args()
 
-input_json_path = args.not_processed_QA_chain_folder
+input_json_path = args.not_processed_temporal_linkages_folder
 output_folder = args.output_folder
 
 def process_and_save_json(input_json_path):

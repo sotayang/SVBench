@@ -38,7 +38,22 @@ If you just want to use the SVBench dataset for training or evaluating your stre
 conda create -n SVBench -y python=3.8.18
 conda activate SVBench
 conda install -y -c pytorch pytorch=1.11.0 torchvision=0.12.0
-pip install opencv-python=4.10.0.84
+pip install opencv-python==4.10.0.84
+```
+
+The data-construction and evaluation scripts additionally require a few Python packages, which can be installed at once via:
+
+```bash
+pip install -r requirements.txt
+```
+
+The QA-chain construction, temporal-linkage identification, and evaluation scripts call the OpenAI API through `clients/chatgpt_client.py`. Configure your credentials via environment variables before running them:
+
+```bash
+export OPENAI_API_KEY="your-api-key"
+# Optional: custom endpoint / proxy and model name
+export OPENAI_API_BASE="https://api.openai.com/v1"
+export GPT_MODEL="gpt-4o"
 ```
 
 ### **Data Preparation**
@@ -131,7 +146,7 @@ Run the following commands to obtain filtered videos.
 Firstly, you should install [Open-Sora](https://github.com/hpcaitech/Open-Sora/tree/main/tools), and have a raw video dataset prepared. A meta file of the dataset information is needed for data processing. To create a meta file from a folder, run:
 
 ```bash
-python -m Data_Filtering/Open-Sora-main/tools.datasets.convert video /path_to_your_video_folder --output /path_to_save_your_meta.csv
+python Data_Filtering/Open-Sora-main/tools/datasets/convert.py video /path_to_your_video_folder --output /path_to_save_your_meta.csv
 ```
 
 Then, run the following commands to get aesthetic scores and optical flow scores of your videos. Make sure the meta file has column 'path'.
@@ -148,7 +163,7 @@ With these information of videos above, you can filtering is conducted to retain
 First you should have a meta file with column 'path' for the videos. Then run the following command:
 
 ```bash
-python Data_Filtering/Open-Sora-main/tools.scene_cut.scene_detect.py ---output /path_to_meta.csv
+python Data_Filtering/Open-Sora-main/tools/scene_cut/scene_detect.py --output /path_to_meta.csv
 ```
 
 The output is {prefix}_timestamp.csv with column timestamp. Each cell in column timestamp is a list of tuples, with each tuple indicating the start and end timestamp of a scene (e.g., [('00:00:01.234', '00:00:02.345'), ('00:00:03.456', '00:00:04.567')]).
@@ -182,7 +197,7 @@ Then run the following command to process the format of QA chains generated in f
 'output_folder' is the path of folder you want to save QA chains with right format.
 
 ```bash
-python construct_data/process_QA_chain_format --not_processed_QA_chain_folder /path_to_your_not_processed_QA_chain_folder --output_folder /path_to_your_output_folder
+python construct_data/process_QA_chain_format.py --not_processed_QA_chain_folder /path_to_your_not_processed_QA_chain_folder --output_folder /path_to_your_output_folder
 ```
 
 ### **5. Implementing QA Quality Evaluation**
@@ -212,12 +227,10 @@ Then run the following command to process the format of temporal linkages genera
 'output_folder' is the path of folder you want to save temporal linkages with right format.
 
 ```bash
-python construct_data/process_temporal_linkages_format --not_processed_temporal_linkages_folder /path_to_your_not_processed_temporal_linkages_folder --output_folder /path_to_your_output_folder
+python construct_data/process_temporal_linkages_format.py --not_processed_temporal_linkages_folder /path_to_your_not_processed_temporal_linkages_folder --output_folder /path_to_your_output_folder
 ```
 
-### **7. Identifying Temporal Linkages**
-
-1. ### **Evaluation**
+### **7. Evaluation**
 
 Before running the script, please ensure you modify the following paths to match your local directory structure. This is crucial for the script to locate the necessary files and directories correctly. Below are the paths that need to be updated:
 
@@ -239,7 +252,7 @@ eval_chainQA_result = '/path/to/your/save_file_for_ChainQA'
 eval_ConQA_result = '/path/to/your/save_file_for_ConQA'
 ```
 
-#### **8.1.QA Evaluation**
+#### **7.1. QA Evaluation**
 
 Run the following command:
 
@@ -247,7 +260,7 @@ Run the following command:
 python evaluation/eval_SingleQA_gpt4_gpt4o.py
 ```
 
-#### **8.2.Dialogue Evaluation**
+#### **7.2. Dialogue Evaluation**
 
 Run the following command:
 
@@ -255,7 +268,7 @@ Run the following command:
 python evaluation/eval_chainQA_gpt4_gpt4o.py
 ```
 
-#### **8.3.Streaming Evaluation**
+#### **7.3. Streaming Evaluation**
 
 Run the following command:
 
