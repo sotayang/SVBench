@@ -1,0 +1,5 @@
+# Dependencies for the SVBench data-construction and evaluation pipeline.
+# (The StreamingChat model has its own heavier requirements documented in the README.)
+opencv-python>=4.10.0.84
+pandas>=1.3.0
+openai>=1.0.0
